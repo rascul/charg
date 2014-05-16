@@ -1,0 +1,7 @@
+Flask>=0.7.2
+Flask-login
+Flask-browserid
+Flask-Mail
+psycopg2
+uwsgi
+

@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Character {{ charid }}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<p><span class="text-success">level {{ char.level }}</span> {{ char.sex }} 
+		{% if char.race == "human" %}
+			<span style="color: cyan">{{ char.race }}</span>
+		{% elif char.race == "seanchan" %}
+			<span style="color: magenta">{{ char.race }}</span>
+		{% elif char.race == "trolloc" %}
+			<span style="color: red">{{ char.race }}</span>
+		{% endif %}
+		{{ char.char_class }} from <em>{{ char.homeland }}</em>
+	</p>
+	<p>
+		<strong>Hitpoints:</strong> {{ char.hitpoints }}<br>
+		<strong>Moves:</strong> {{ char.moves }}
+	</p>
+	<div class="table-responsive">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Strength</th>
+					<th>Intelligence</th>
+					<th>Wisdom</th>
+					<th>Dexterity</th>
+					<th>Constitution</th>
+					<th>Sum</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ char.stat_str }}</td>
+					<td>{{ char.stat_int }}</td>
+					<td>{{ char.stat_wil }}</td>
+					<td>{{ char.stat_dex }}</td>
+					<td>{{ char.stat_con }}</td>
+					<td>{{ char.stat_str + char.stat_int + char.stat_wil + char.stat_dex + char.stat_con }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p><strong>Notes:</strong></p>
+	<p>{{ char.notes }}</p>
+</div>
+<div class="row">
+	<p><strong>Request Character</strong></p>
+	<form class="form-inline" action="/request/{{ charid }}" method="post" role="form">
+		<div class="form-group">
+			<label class="sr-only" for="request_name">Name</label>
+			<input type="text" name="name" class="form-control" id="name" placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="request_email">Email</label>
+			<input type="email" name="email" class="form-control" id="email" placeholder="Email">
+		</div>
+		<button type="submit" class="btn btn-default">Request</button>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+# this is the default config stuff
+# copy this to config.py and edit
+# config.py is in .gitignore so you can't accidentally put your passwords on github
+
+DATABASE = "dbname=charg user=charg password=charg host=example.com"
+DEBUG = False
+PROPAGATE_EXCEPTIONS = True
+SECRET_KEY = 'secret key'
+
+# email settings
+MAIL_SENDER_ADDRESS = 'charactergiveaway@gmail.com'
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'charactergiveaway@gmail.com'
+MAIL_PASSWORD = 'this is the password'
+MAIL_SUPPRESS_SEND = False
+MAIL_DEBUG = False
+
+# messages note: if you change the order and/or number of %s then it will break
+
+REQUEST_SUBJECT = "A character of yours has been requested"
+REQUEST_MESSAGE = """
+A character of yours has been requested on the (Unofficial) WoTMUD Character
+Giveaway site.
+
+Use the following URL to view requests for that character:
+
+http://charg.wotmod.co/admin/char/%s
+
+Use the following URL to view all requests for your characters:
+
+http://charg.wotmod.co/requests
+
+
+--
+
+http://charg.wotmod.co
+
+"""
+
+RELEASE_SUBJECT = "A character has been released to you"
+RELEASE_MESSAGE = """
+A character you have requested on the (Unofficial) WoTMUD Character Giveaway
+web site has been released to you. The information is as follows:
+
+Name: %s
+Password: %s
+
+Sex: %s
+Race: %s
+Class: %s
+Homeland: %s
+
+Level: %s
+Hitpoints: %s
+Moves: %s
+
+STR: %s
+INT: %s
+WIL: %s
+DEX: %s
+CON: %s
+SUM: %s
+
+Rented: %s
+Notes: %s
+
+
+--
+
+http://charg.wotmod.co
+
+"""

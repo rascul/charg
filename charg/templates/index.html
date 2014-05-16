@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+(Unofficial) <a href="http://wotmud.org">WoTMUD</a> Character Giveaway
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="table-responsive">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th></th>
+					<th><a href="#">Hitpoints</a></th>
+					<th><a href="#">Moves</a></th>
+					<th><a href="#">Level</a></th>
+					<th><a href="#">Sex</a></th>
+					<th><a href="#">Race</a></th>
+					<th><a href="#">Class</a></th>
+					<th><a href="#">Homeland</a></th>
+					<th><a href="#">STR</a></th>
+					<th><a href="#">INT</a></th>
+					<th><a href="#">WIL</a></th>
+					<th><a href="#">DEX</a></th>
+					<th><a href="#">CON</a></th>
+					<th><a href="#">SUM</a></th>
+					<th><a href="#">Expires</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for char in chars %}
+				<tr>
+					<td><a href="/char/{{ char.charid }}">view</a></td>
+					<td>{{ char.hitpoints }}</td>
+					<td>{{ char.moves }}</td>
+					<td>{{ char.level }}</td>
+					<td>{{ char.sex }}</td>
+					<td>{% if char.race == "human" %}<span style="color: cyan">
+						{% elif char.race == "seanchan" %}<span style="color: magenta">
+						{% elif char.race == "trolloc" %}<span style="color: red">
+						{% endif %}{{ char.race }}</span></td>
+					<td>{{ char.char_class }}</td>
+					<td>{{ char.homeland }}</td>
+					<td>{{ char.stat_str }}</td>
+					<td>{{ char.stat_int }}</td>
+					<td>{{ char.stat_wil }}</td>
+					<td>{{ char.stat_dex }}</td>
+					<td>{{ char.stat_con }}</td>
+					<td>{{ char.stat_str + char.stat_int + char.stat_wil + char.stat_dex + char.stat_con }}</td>
+					<td>{% if char.expires %}{{ char.expires }}{% endif %}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

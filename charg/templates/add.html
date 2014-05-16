@@ -1,0 +1,284 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Add a Character
+{% endblock %}
+
+{% block body %}
+<div class="row">
+{% if current_user.is_authenticated() %}
+
+	<form method="POST" role="form" class="form-horizontal">
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="password">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="hp" class="col-sm-2 control-label">Hitpoints</label>
+			<div class="col-sm-1">
+				<input type="number" class="form-control" name="hp">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="mv" class="col-sm-2 control-label">Moves</label>
+			<div class="col-sm-1">
+				<input type="number" class="form-control" name="mv">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="level" class="col-sm-2 control-label">Level</label>
+			<div class="col-sm-1">
+				<select name="level">
+					{% for i in range(1, 52) %}
+						{% if i == 3 %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Sex</label>
+			<div class="col-sm-2">
+				<select name="sex">
+					<option value="gal">Gal</option>
+					<option value="guy" selected>Guy</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Race</label>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race1" value="human" checked> Human
+			</div>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race2" value="seanchan"> Seanchan
+			</div>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race3" value="trolloc"> Trolloc
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Class</label>
+			<div class="col-sm-2">
+				<select name="human-class">
+					<option value="channeler">Channeler</option>
+					<option value="hunter" selected>Hunter</option>
+					<option value="rogue">Rogue</option>
+					<option value="warrior">Warrior</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="seanchan-class">
+					<option value="hunter" selected>Hunter</option>
+					<option value="rogue">Rogue</option>
+					<option value="warrior">Warrior</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="trolloc-class">
+					<option value="hunter" selected>Hunter</option>
+					<option value="rogue">Rogue</option>
+					<option value="warrior">Warrior</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Homeland</label>
+			<div class="col-sm-2">
+				<select name="human-homeland">
+					<option value="altara">Altara</option>
+					<option value="amadicia">Amadicia</option>
+					<option value="andor">Andor</option>
+					<option value="arad doman">Arad Doman</option>
+					<option value="arafel">Arafel</option>
+					<option value="borderlands">Borderlands</option>
+					<option value="cairhien">Cairhien</option>
+					<option value="ghealdan">Ghealdan</option>
+					<option value="illian">Illian</option>
+					<option value="kandor" selected>Kandor</option>
+					<option value="mayene">Mayene</option>
+					<option value="murandy">Murandy</option>
+					<option value="saldaea">Saldea</option>
+					<option value="shienar">Shienar</option>
+					<option value="tarabon">Tarabon</option>
+					<option value="tear">Tear</option>
+					<option value="two rivers">Two Rivers</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="seanchan-homeland">
+					<option value="seandar" selected>Seandar</option>
+					<option value="kirendad">Kirendad</option>
+					<option value="shon kifar">Shon Kifar</option>
+					<option value="rampore">Rampore</option>
+					<option value="tzura">Tzura</option>
+					<option value="noren m'shar">Noren M'shar</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="trolloc-homeland">
+					<option value="beaked">Beaked</option>
+					<option value="bearish">Bearish</option>
+					<option value="boarheaded">Boarheaded</option>
+					<option value="ramshorned" selected>Ramshorned</option>
+					<option value="wolfish">Wolfish</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Stats</label>
+			<div class="col-sm-2">
+				<strong>Strength</strong><br>
+				<select name="str">
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19" selected>19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Intelligence</strong><br>
+				<select name="int">
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14" selected>14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Wisdom</strong><br>
+				<select name="wil">
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14" selected>14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Dexterity</strong><br>
+				<select name="dex">
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19" selected>19</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Constitution</strong><br>
+				<select name="con">
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19" selected>19</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Rented</label>
+			<div class="col-sm-2">
+				<input type="text" name="rented">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Notes</label>
+			<div class="col-sm-10">
+				<textarea name="notes"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-10">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+{% else %}
+	<p>You must login.</p>
+{% endif %}
+</div>
+{% endblock %}
+

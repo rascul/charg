@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Character Giveaway</title>
+		
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/tablecloth/assets/css/tablecloth.css">
+		
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1>{% block title %}{% endblock %}</h1>
+			</div>
+			
+			<div class="row">
+				<a href="/">Character Giveaway</a> - 
+				{% if current_user.is_authenticated() %}
+				<a href="/add">Add Character</a> - 
+				<a href="/requests">Requests</a> - 
+				<a href="/admin">Admin</a> - 
+				<a href="/help">Help</a> - 
+				<a id="browserid-logout" href="#">Logout</a>
+				{% else %}
+				<a href="/help">Help</a> - 
+				<a id="browserid-login" href="#">Login</a>
+				{% endif %}
+			</div>
+			
+			<hr>
+			
+			{% block body %}{% endblock %}
+			
+		</div>
+		
+		
+		<!-- look at all these javascripts woooo -->
+		<script type="text/javascript" src="https://login.persona.org/include.js"></script>
+		<script type="text/javascript" src="/static/jquery/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/static/tablecloth/assets/js/jquery.metadata.js"></script>
+		<script type="text/javascript" src="/static/tablecloth/assets/js/jquery.tablesorter.min.js"></script>
+		<script type="text/javascript" src="/static/tablecloth/assets/js/jquery.tablecloth.js"></script>
+		<script type="text/javascript">{{ auth_script|safe }}</script>
+		
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("table").tablecloth({
+				theme: "default",
+				striped: true,
+				sortable: true,
+				condensed: true
+			});
+		});
+		</script>
+	</body>
+</html>

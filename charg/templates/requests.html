@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Requests
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	{% for request in requests %}
+	<p>
+		<a href="/requests/release/{{ request.requestid }}"><button class="btn btn-success btn-xs">Release</button></a> 
+		<a href="/requests/delete/{{ request.requestid }}"><button class="btn btn-danger btn-xs">Delete</button></a> 
+		{{ request.request_name }} requests <a href="/admin/char/{{ request.charid }}">{{ request.char_name }}</a>.
+	</p>
+	{% endfor %}
+</div>
+{% endblock %}

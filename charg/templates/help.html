@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+(Unofficial) <a href="http://wotmud.org">WoTMUD</a> Character Giveaway
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<ul>
+		<li>Only unreleased, non expired characters are shown.</li>
+		<li>You only need to login to give away a charater, not to request one.</li>
+		<li>
+			Login uses <a href="https://login.persona.org">Persona</a>. If you
+			are not yet registered with Persona, you can do so by clicking the
+			Login link.
+		</li>
+		<li>You will never know the identity of the person requesting the character.</li>
+		<li>You will never know the identity of the person you request a char from.</li>
+		<li>Email addresses are stored only for notifications of requests and releases.</li>
+		<li>All emails will come from {{ email }}. Not monitored for incoming mail.</li>
+		<li>When you add a character, the expires timer starts.</li>
+		<li>Renew the character when you rent to update the expires timer.</li>
+		<li>Changing the level will reset the expires timer to that level at that time.</li>
+		<li>The longer you wait to add, update or renew a character, the farther off the expires timer will be.</li>
+		<li><a href="https://github.com/rascul/charg">Open source</a></li>
+	</ul>
+</div>
+{% endblock %}

@@ -1,0 +1,243 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Edit a Character
+{% endblock %}
+
+{% block body %}
+<div class="row">
+{% if current_user.is_authenticated() %}
+
+	<form method="POST" role="form" class="form-horizontal">
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="name" value="{{ char.name }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="password" value="{{ char.password }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="hp" class="col-sm-2 control-label">Hitpoints</label>
+			<div class="col-sm-1">
+				<input type="number" class="form-control" name="hp" value="{{ char.hitpoints }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="mv" class="col-sm-2 control-label">Moves</label>
+			<div class="col-sm-1">
+				<input type="number" class="form-control" name="mv" value="{{ char.moves }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="level" class="col-sm-2 control-label">Level</label>
+			<div class="col-sm-1">
+				<select name="level">
+				{% for i in range(1, 52) %}
+					{% if i == char.level %}
+						<option value="{{ i }}" selected>{{ i }}</option>
+					{% else %}
+						<option value="{{ i }}">{{ i }}</option>
+					{% endif %}
+				{% endfor %}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Sex</label>
+			<div class="col-sm-2">
+				<select name="sex">
+					{% if char.sex == "gal" %}
+						<option value="gal" selected>Gal</option>
+						<option value="guy">Guy</option>
+					{% else %}
+						<option value="gal">Gal</option>
+						<option value="guy" selected>Guy</option>
+					{% endif %}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Race</label>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race1" value="human"{% if char.race == "human" %} checked{% endif %}> Human
+			</div>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race2" value="seanchan"{% if char.race == "seanchan" %} checked{% endif %}> Seanchan
+			</div>
+			<div class="col-sm-2">
+				<input type="radio" class="form-control" name="race" id="race3" value="trolloc"{% if char.race == "trolloc" %} checked{% endif %}> Trolloc
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Class</label>
+			<div class="col-sm-2">
+				<select name="human-class">
+					<option value="channeler"{% if char.char_class == "channeler" %} selected{% endif %}>Channeler</option>
+					<option value="hunter"{% if char.char_class == "hunter" %} selected{% endif %}>Hunter</option>
+					<option value="rogue"{% if char.char_class == "rogue" %} selected{% endif %}>Rogue</option>
+					<option value="warrior"{% if char.char_class == "warrior" %} selected{% endif %}>Warrior</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="seanchan-class">
+					<option value="hunter"{% if char.char_class == "hunter" %} selected{% endif %}>Hunter</option>
+					<option value="rogue"{% if char.char_class == "rogue" %} selected{% endif %}>Rogue</option>
+					<option value="warrior"{% if char.char_class == "warrior" %} selected{% endif %}>Warrior</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="trolloc-class">
+					<option value="hunter"{% if char.char_class == "hunter" %} selected{% endif %}>Hunter</option>
+					<option value="rogue"{% if char.char_class == "rogue" %} selected{% endif %}>Rogue</option>
+					<option value="warrior"{% if char.char_class == "warrior" %} selected{% endif %}>Warrior</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Homeland</label>
+			<div class="col-sm-2">
+				<select name="human-homeland">
+					<option value="altara"{% if char.homeland == "altara" %} selected{% endif %}>Altara</option>
+					<option value="amadicia"{% if char.homeland == "amadicia" %} selected{% endif %}>Amadicia</option>
+					<option value="andor"{% if char.homeland == "andor" %} selected{% endif %}>Andor</option>
+					<option value="arad doman"{% if char.homeland == "arad doman" %} selected{% endif %}>Arad Doman</option>
+					<option value="arafel"{% if char.homeland == "arafel" %} selected{% endif %}>Arafel</option>
+					<option value="borderlands"{% if char.homeland == "borderlands" %} selected{% endif %}>Borderlands</option>
+					<option value="cairhien"{% if char.homeland == "cairhien" %} selected{% endif %}>Cairhien</option>
+					<option value="ghealdan"{% if char.homeland == "ghealdan" %} selected{% endif %}>Ghealdan</option>
+					<option value="illian"{% if char.homeland == "illian" %} selected{% endif %}>Illian</option>
+					<option value="kandor"{% if char.homeland == "kandor" %} selected{% endif %}>Kandor</option>
+					<option value="mayene"{% if char.homeland == "mayene" %} selected{% endif %}>Mayene</option>
+					<option value="murandy"{% if char.homeland == "murandy" %} selected{% endif %}>Murandy</option>
+					<option value="saldaea"{% if char.homeland == "saldaea" %} selected{% endif %}>Saldea</option>
+					<option value="shienar"{% if char.homeland == "shienar" %} selected{% endif %}>Shienar</option>
+					<option value="tarabon"{% if char.homeland == "tarabon" %} selected{% endif %}>Tarabon</option>
+					<option value="tear"{% if char.homeland == "tear" %} selected{% endif %}>Tear</option>
+					<option value="two rivers"{% if char.homeland == "two rivers" %} selected{% endif %}>Two Rivers</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="seanchan-homeland">
+					<option value="seandar"{% if char.homeland == "seandar" %} selected{% endif %}>Seandar</option>
+					<option value="kirendad"{% if char.homeland == "kirendad" %} selected{% endif %}>Kirendad</option>
+					<option value="shon kifar"{% if char.homeland == "shon kifar" %} selected{% endif %}>Shon Kifar</option>
+					<option value="rampore"{% if char.homeland == "rampore" %} selected{% endif %}>Rampore</option>
+					<option value="tzura"{% if char.homeland == "tzura" %} selected{% endif %}>Tzura</option>
+					<option value="noren m'shar"{% if char.homeland == "norn m'shar" %} selected{% endif %}>Noren M'shar</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<select name="trolloc-homeland">
+					<option value="beaked"{% if char.homeland == "beaked" %} selected{% endif %}>Beaked</option>
+					<option value="bearish"{% if char.homeland == "bearish" %} selected{% endif %}>Bearish</option>
+					<option value="boarheaded"{% if char.homeland == "boarheaded" %} selected{% endif %}>Boarheaded</option>
+					<option value="ramshorned"{% if char.homeland == "ramshorned" %} selected{% endif %}>Ramshorned</option>
+					<option value="wolfish"{% if char.homeland == "wolfish" %} selected{% endif %}>Wolfish</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Stats</label>
+			<div class="col-sm-2">
+				<strong>Strength</strong><br>
+				<select name="str">
+					{% for i in range(5, 22) %}
+						{% if i == char.stat_str %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Intelligence</strong><br>
+				<select name="int">
+					{% for i in range(3, 20) %}
+						{% if i == char.stat_int %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Wisdom</strong><br>
+				<select name="wil">
+					{% for i in range(3, 20) %}
+						{% if i == char.stat_wil %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Dexterity</strong><br>
+				<select name="dex">
+					{% for i in range(5, 20) %}
+						{% if i == char.stat_dex %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<strong>Constitution</strong><br>
+				<select name="con">
+					{% for i in range(5, 20) %}
+						{% if i == char.stat_con %}
+							<option value="{{ i }}" selected>{{ i }}</option>
+						{% else %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Rented</label>
+			<div class="col-sm-2">
+				<input type="text" name="rented" value="{{ char.rent }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Notes</label>
+			<div class="col-sm-10">
+				<textarea name="notes">{{ char.notes }}</textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-10">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+{% else %}
+	<p>You must login.</p>
+{% endif %}
+</div>
+{% endblock %}
+

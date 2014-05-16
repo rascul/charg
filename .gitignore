@@ -1,0 +1,5 @@
+.project
+*.pyc
+*.pyo
+*~
+config.py
